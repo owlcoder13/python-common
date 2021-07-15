@@ -1,6 +1,10 @@
-from http import recaptcha
+from urllib.parse import urlencode
+from urllib.request import urlopen
+import json
+from .http import get_client_ip
 
-def check_recaptcha(request):
+
+def check_recaptcha(request, recaptcha_secret):
     """
         robots check
     """
@@ -10,7 +14,7 @@ def check_recaptcha(request):
 
     url_recaptcha_verify = 'https://www.google.com/recaptcha/api/siteverify'
     recaptcha_response = request.POST.get('g-recaptcha-response', None)
-    private_recaptcha = settings.RECAPTCHA_SECRET_KEY
+    private_recaptcha = recaptcha_secret
 
     params = urlencode({
         'secret': private_recaptcha,
@@ -20,7 +24,7 @@ def check_recaptcha(request):
 
     data = urlopen(url_recaptcha_verify, params.encode('utf-8')).read()
     result = json.loads(data)
-    print(result)
+
     success = result.get('success', None)
 
     if success:
