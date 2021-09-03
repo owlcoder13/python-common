@@ -13,6 +13,12 @@ def get_client_ip(request):
     return ip
 
 
+def get_client_browser(request):
+    if 'HTTP_USER_AGENT' in request.META:
+        return request.META['HTTP_USER_AGENT']
+    return None
+
+
 def redirect_back(request):
     """
         Redirect to HTTP_REFERER header from response
