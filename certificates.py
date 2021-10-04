@@ -6,6 +6,11 @@ import OpenSSL
 
 ssl_date_fmt = r'%b %d %H:%M:%S %Y %Z'
 
+"""
+For this library you must exec
+    pip install python-dateutil pyOpenSSL 
+"""
+
 
 def get_expire_from_file(file_name):
     cert = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, open(file_name).read())
