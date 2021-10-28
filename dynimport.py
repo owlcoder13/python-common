@@ -1,3 +1,6 @@
+"""
+Library for dynamic import different python components like modules, classes, functions
+"""
 from common.data import getattrdot
 import importlib
 import importlib.util
