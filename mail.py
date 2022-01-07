@@ -23,6 +23,9 @@ class Mailer(object):
         if to is None:
             return False
 
+        if from_ is None:
+            from_ = self.user
+
         self.connect()
         if not isinstance(to, list):
             to = [to]
