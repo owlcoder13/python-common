@@ -57,6 +57,10 @@ def get_response_from_cookie(request):
     
 
 def check_captcha_from_request(request):
+    
+    if 'hide_captcha' in request.COOKIES:
+        return True
+    
     request_code = get_code_from_cookie(request)
     response_code = get_response_from_cookie(request)
 
